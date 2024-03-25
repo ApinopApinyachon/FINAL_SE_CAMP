@@ -13,11 +13,9 @@ class C_Todo extends Controller
     public function index()
     {
         try {
-
             $todo_lists = Todo::paginate(10);
 
-            return view('Home', compact('todo_lists'));
-
+            return view('home', compact('todo_lists'));
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
@@ -62,7 +60,10 @@ class C_Todo extends Controller
      */
     public function edit(string $id)
     {
-        return view('editTodo');
+
+        $data['todo'] = Todo::find($id);
+
+        return view('editTodo', $data);
     }
 
     /**
@@ -70,7 +71,14 @@ class C_Todo extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+        $todo_list = Todo::find($id);
+        $todo_list->td_name = $request->input('editName');
+        $todo_list->td_des = $request->input('editDes');
+        $todo_list->save();
+
+        return redirect('/home');
+
     }
 
     /**
@@ -78,6 +86,13 @@ class C_Todo extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $is_deleted = Todo::find($id)->delete();
+        if ($is_deleted) {
+            return redirect('/home');
+        } else {
+            return redirect()->route('tasks.index')
+                ->with('message', 'Delete Fail!');
+        }
+
     }
 }

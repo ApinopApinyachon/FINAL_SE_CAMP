@@ -10,20 +10,19 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
 </head>
 
 <body>
     <div class="container">
 
+        @if (session('message'))
+        <div class="alert">{{ session('message') }}</div>
+        @endif
         <div class="table">
             <table class="table">
                 <h1 class="">ตาราง</h1>
-                <form action="{{ url('/home') }}" method="POST">
-                    @csrf
-                    <input type="text" class=" " placeholder="title" name = "title">
-                    <input type="text" placeholder="des" name="des">
-                    <button class="btn btn-primary" type="submit">สร้าง TODO </button>
-                </form>
+
                 {{--  <button class="btn btn-primary" onclick="alert()">สร้างรายการTodo</button>  --}}
                 <thead>
                     <tr>
@@ -52,10 +51,11 @@
                                         <a href='{{ url('/home/add') }}'>✅</a>
                                     </div>
                                     <div>
-                                        <a href='{{ url('/home/edit/$todo_list->td_id </a>') }}'>🖊️</a>
+
+                                        <a href='{{ url("/home/edit/$todo_list->td_id") }}'>🖊️</a>
                                     </div>
                                     <div>
-                                        <a href='{{ url('/home') }}'>🗑️</a>
+                                        <a href='{{ url("/home/delete/$todo_list->td_id") }}'>🗑️</a>
                                     </div>
                                 </td>
 

@@ -20,13 +20,11 @@ Route::get('/', function () {
 
 Route::get('/home', [C_Todo::class, 'index']);
 Route::get('/home/add', [C_Todo::class, 'create']);
+Route::post('/home', [C_Todo::class, 'store']);
+
 Route::get('/home/edit/{td_id}', [C_Todo::class, 'edit']);
 
-Route::post('/home', [C_Todo::class, 'store']);
-// Route::put('/home/{td_id}', [C_Todo::class, 'edit']);
-Route::delete('/home/{td_id}', [C_Todo::class, 'destroy']);
+Route::post('home/edit/{td_id}', [C_Todo::class, 'update']);
 
-// get ดึงข้อมูลมาแสดง
-// post การสร้าง
-// put แก้ไข
-// delete ลบ
+// Route::put('/home/{td_id}', [C_Todo::class, 'edit']);
+Route::get('/home/delete/{td_id}', [C_Todo::class, 'destroy']);
