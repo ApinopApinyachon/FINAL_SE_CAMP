@@ -49,13 +49,13 @@
                                 </td>
                                 <td class="d-flex gap-2" style="cursor: pointer; ">
                                     <div>
-                                        ✅
+                                        <a href='{{ url('/home/add') }}'>✅</a>
                                     </div>
                                     <div>
-                                        🖊️
+                                        <a href='{{ url('/home/edit/$todo_list->td_id </a>') }}'>🖊️</a>
                                     </div>
                                     <div>
-                                        🗑️
+                                        <a href='{{ url('/home') }}'>🗑️</a>
                                     </div>
                                 </td>
 

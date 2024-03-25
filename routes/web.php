@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\C_Todo;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +19,12 @@ Route::get('/', function () {
 });
 
 Route::get('/home', [C_Todo::class, 'index']);
-Route::post('/home', [C_Todo::class, 'create']);
-Route::put('/home/todo/{td_id}', [C_Todo::class, 'edit']);
-Route::delete('/home/todo/{td_id}', [C_Todo::class, 'destroy']);
+Route::get('/home/add', [C_Todo::class, 'create']);
+Route::get('/home/edit/{td_id}', [C_Todo::class, 'edit']);
+
+Route::post('/home', [C_Todo::class, 'store']);
+// Route::put('/home/{td_id}', [C_Todo::class, 'edit']);
+Route::delete('/home/{td_id}', [C_Todo::class, 'destroy']);
 
 // get ดึงข้อมูลมาแสดง
 // post การสร้าง

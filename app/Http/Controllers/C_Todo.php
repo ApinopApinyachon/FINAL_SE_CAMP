@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Todo;
-
+use Illuminate\Http\Request;
 
 class C_Todo extends Controller
 {
@@ -13,12 +12,13 @@ class C_Todo extends Controller
      */
     public function index()
     {
-        try{
+        try {
 
             $todo_lists = Todo::paginate(10);
+
             return view('Home', compact('todo_lists'));
 
-        } catch (\Exception $e){
+        } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
 
@@ -27,19 +27,9 @@ class C_Todo extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request)
+    public function create()
     {
-        $td_name = $request->input('title');
-        $td_des = $request->input('des');
-
-        Todo::create([
-            'td_name' => $td_name,
-            'td_des' => $td_des,
-            'td_status' => false
-        ]);
-
-
-        return redirect('/home');
+        return view('addTodo');
     }
 
     /**
@@ -47,7 +37,16 @@ class C_Todo extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $td_name = $request->input('title');
+        $td_des = $request->input('des');
+
+        Todo::create([
+            'td_name' => $td_name,
+            'td_des' => $td_des,
+            'td_status' => false,
+        ]);
+
+        return redirect('/home');
     }
 
     /**
@@ -63,7 +62,7 @@ class C_Todo extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('editTodo');
     }
 
     /**
