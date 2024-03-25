@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\C_Todo;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/home', [C_Todo::class, 'index']);
+Route::post('/home', [C_Todo::class, 'create']);
+Route::put('/home/todo/{td_id}', [C_Todo::class, 'edit']);
+Route::delete('/home/todo/{td_id}', [C_Todo::class, 'destroy']);
+
+// get ดึงข้อมูลมาแสดง
+// post การสร้าง
+// put แก้ไข
+// delete ลบ
